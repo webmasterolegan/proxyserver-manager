@@ -1,0 +1,27 @@
+[
+    {
+        "ip_address": "212.58.132.5",
+        "port": 8888,
+        "type": "http"
+    },{
+        "ip_address": "190.93.245.26",
+        "port": 80,
+        "type": "http"
+    },{
+        "ip_address": "185.162.230.88",
+        "port": 80,
+        "type": "http"
+    },{
+        "ip_address": "45.12.30.105",
+        "port": 80,
+        "type": "http"
+    },{
+        "ip_address": "31.43.179.38",
+        "port": 80,
+        "type": "http"
+    },{
+        "ip_address": "104.254.140.0",
+        "port": 80,
+        "type": "http"
+    }
+]
