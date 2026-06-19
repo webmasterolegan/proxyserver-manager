@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
+use App\Console\Commands\CheckAllProxyServersCommand;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+/**
+ * Проверка доступности всех прокси серверов каждые 5 минут
+ */
+Schedule::command(CheckAllProxyServersCommand::class)->everyFiveMinutes();
