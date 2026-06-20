@@ -3,9 +3,6 @@ import { ref } from 'vue'
 import Modal from './Modal.vue'
 import ProxyServerForm from './ProxyServerForm.vue'
 import ProxyServerDelete from './ProxyServerDelete.vue'
-import useProxyServers from '../composables/useProxyServers'
-
-const { deleteProxyServer } = useProxyServers()
 
 defineProps({
     proxyServers: {
