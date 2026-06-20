@@ -6,12 +6,22 @@ const BASE_HEADERS = {
     'Content-Type': 'application/json',
 }
 
+const parseResponse = async (response) => {
+    const text = await response.text()
+
+    return {
+        status: response.status,
+        data: text ? JSON.parse(text) : null,
+    }
+}
+
 export default {
     get: async (url) => {
         const response = await fetch(url, {
             headers: BASE_HEADERS,
         })
-        return { status: response.status, data: await response.json() }
+
+        return parseResponse(response)
     },
 
     post: async (url, data) => {
@@ -19,8 +29,9 @@ export default {
             method: 'POST',
             body: JSON.stringify(data),
             headers: BASE_HEADERS,
-        });
-        return { status: response.status, data: await response.json() }
+        })
+
+        return parseResponse(response)
     },
 
     put: async (url, data) => {
@@ -28,15 +39,17 @@ export default {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: BASE_HEADERS,
-        });
-        return { status: response.status, data: await response.json() }
+        })
+
+        return parseResponse(response)
     },
 
     delete: async (url) => {
         const response = await fetch(url, {
             method: 'DELETE',
             headers: BASE_HEADERS,
-        });
-        return { status: response.status, data: await response.json() }
+        })
+
+        return parseResponse(response)
     },
 }

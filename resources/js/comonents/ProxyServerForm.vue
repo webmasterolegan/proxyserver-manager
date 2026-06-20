@@ -33,19 +33,22 @@ const editableProxyServer = ref({
 const frontendErrorMessage = ref(null)
 const successMessage = ref(null)
 
-const saveProxyServer = () => {
+const saveProxyServer = async () => {
     frontendErrorMessage.value = null
+    successMessage.value = null
 
     if (!validateProxyServer()) {
-        console.error('Invalid proxy server data')
         frontendErrorMessage.value = 'Некорректные данные прокси сервера'
         return
     }
 
-    if (props.proxyServer.id) {
-        updateProxyServer(editableProxyServer.value)
-    } else {
-        createProxyServer(editableProxyServer.value)
+    const result = props.proxyServer.id
+        ? await updateProxyServer(editableProxyServer.value)
+        : await createProxyServer(editableProxyServer.value)
+
+    if (!result) {
+        frontendErrorMessage.value = error.value
+        return
     }
 
     successMessage.value = 'Прокси сервер успешно сохранен'
@@ -96,8 +99,8 @@ const validateProxyServer = () => {
             </template>
         </h1>
 
-        <p v-if="frontendErrorMessage" class="text-red-500">
-            {{ frontendErrorMessage }}
+        <p v-if="frontendErrorMessage || error" class="text-red-500">
+            {{ frontendErrorMessage || error }}
         </p>
 
         <p v-if="successMessage" class="text-green-500">
