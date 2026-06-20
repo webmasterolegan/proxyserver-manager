@@ -11,7 +11,7 @@ Frontend [Vue3](https://vuejs.org/)
 
 Проверка доступности осуществляется каждые 5 минут:
 
-1) Планировщик выполняет команду [App/Console/Commands/CheckAllProxyServersCommand](https://github.com/webmasterolegan/proxyserver-manager/blob/master/app/Console/Commands/CheckAllProxyServersCommand.php)
+1) Планировщик выполняет команду [App\Console\Commands\CheckAllProxyServersCommand](https://github.com/webmasterolegan/proxyserver-manager/blob/master/app/Console/Commands/CheckAllProxyServersCommand.php)
 
 ```
 php artisan app:check-all-proxy-servers
