@@ -19,8 +19,15 @@ const props = defineProps({
 
 const successMessage = ref(null)
 
-const deleteProxyServerAction = () => {
-    deleteProxyServer(props.proxyServer.id)
+const deleteProxyServerAction = async () => {
+    successMessage.value = null
+
+    const result = await deleteProxyServer(props.proxyServer.id)
+
+    if (!result) {
+        return
+    }
+
     successMessage.value = 'Прокси сервер успешно удален'
 
     setTimeout(() => {
@@ -34,6 +41,8 @@ const deleteProxyServerAction = () => {
 <template>
     <div>
         <h1>Удаление прокси сервера</h1>
+
+        <p v-if="error" class="text-red-500">{{ error }}</p>
 
         <p v-if="successMessage" class="text-green-500">{{ successMessage }}</p>
 
